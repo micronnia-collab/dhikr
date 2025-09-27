@@ -24,7 +24,7 @@
       align-items: center;
     }
     .home {
-      font-family: 'Amiri', 'Scheherazade New', 'Cairo', 'Lateef', 'Reem Kufi', serif;
+      font-family:  'MVTyper', 'Amiri', 'Scheherazade New', 'Cairo', 'Lateef', 'Reem Kufi', serif;
       position: fixed;
       top: 0;
       right: 0;
@@ -42,18 +42,18 @@
       letter-spacing: 2px;
     }
     .header {
-      font-family: 'MVTyper','Amiri', 'Scheherazade New', 'Cairo', 'Lateef', 'Reem Kufi', serif;
+      font-family: 'MVTyper', 'Amiri', 'Scheherazade New', 'Cairo', 'Lateef', 'Reem Kufi', serif;
       position: fixed;
       top: 0;
       right: 0;
       left: 0;
-      height: 70px;
+      height: 80px;
       background: #444;
       color: #ffd700;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5em;
+      font-size: 1.7em;
       z-index: 100;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       font-weight: bold;
@@ -94,7 +94,7 @@
     .slide {
       background: #333;
       border-radius: 16px;
-      padding: 32px;
+      padding: 64px;
       max-width: 800px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       text-align: right;
@@ -175,6 +175,7 @@
       border: 1px solid #222;
     }
     .theme-switch-btn {
+      font-family: 'MVTyper', 'Amiri', 'Scheherazade New', 'Cairo', 'Lateef', 'Reem Kufi', serif;
       background: #222;
       color: #ffd700;
       border: 1px solid #ffd700;
@@ -201,18 +202,18 @@
     <div class="slide" id="slide"></div>
   </div>
   <div class="footer">
-    <button class="theme-switch-btn" id="theme-switch-btn">Light Theme</button>
+    <button class="theme-switch-btn" id="theme-switch-btn">އަލި ކުލަ</button>
     <span class="footer-controls">
-      <label for="font-size">Font size:</label>
+      <label for="font-size">ފޮންޓް ސައިޒް:</label>
       <input type="range" id="font-size" min="24" max="64" value="32">
-      <span id="font-size-value">32px</span>
-      <label for="arabic-font">Font:</label>
+      <span id="font-size-value">64px</span>
+      <label for="arabic-font">ފޮންޓް:</label>
       <select id="arabic-font">
-        <option value="'Amiri', serif" selected>Amiri (default)</option>
-        <option value="'Scheherazade New', serif">Scheherazade New</option>
-        <option value="'Cairo', sans-serif">Cairo</option>
-        <option value="'Lateef', serif">Lateef</option>
-        <option value="'Reem Kufi', sans-serif">Reem Kufi</option>
+        <option value="'Amiri', serif" selected>الأميري</option>
+        <option value="'Scheherazade New', serif">سِلسلة جديدة من شهرزاد</option>
+        <option value="'Cairo', sans-serif">قاهرة</option>
+        <option value="'Lateef', serif">لطيف </option>
+        <option value="'Reem Kufi', sans-serif">كوفي ريم</option>
       </select>
     </span>
   </div>
@@ -258,12 +259,12 @@
       if (theme === 'dark') {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        themeSwitchBtn.textContent = "Dark Theme";
+        themeSwitchBtn.textContent = "އަނދިރި ކުލަ";
         theme = 'light';
       } else {
         document.body.classList.remove('theme-light');
         document.body.classList.add('theme-dark');
-        themeSwitchBtn.textContent = "Light Theme";
+        themeSwitchBtn.textContent = "އަލި ކުލަ";
         theme = 'dark';
       }
     });
