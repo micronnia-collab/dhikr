@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
 # 1. Paste Your Bot Token Here
-TOKEN = "YOUR_HTTP_API_TOKEN_HERE" 
+TOKEN = "8258809727:AAGstG9FKIWQ9g5UEmTAAOeWUVK6CIl3NBQ" 
 
 # Set up logging so you can see when the bot starts
 logging.basicConfig(
