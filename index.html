@@ -23,36 +23,36 @@
       justify-content: flex-start;
       align-items: center;
     }
-    .home {
-      font-family: 'MVTyper', 'Amiri', 'Scheherazade New', 'Cairo', 'Lateef', 'Reem Kufi', serif;
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 60px;
-      background: #444;
-      color: #ffd700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2em;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    .header-slide {
+      background: #333;
+      font-family: 'MVTyper', 'Amiri', serif;
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 800px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      font-size: 2em;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      margin-top: 24px;
+      direction: rtl;
+      user-select: none;
+      color: #fff;
       font-weight: bold;
       letter-spacing: 2px;
     }
-    body.theme-dark { background: #222; color: #fff; }
-    body.theme-light { background: #fff; color: #222; }
-    body.theme-light .home { background: #eaeaea; color: #222; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-    .main-content {
-      flex: 1 0 auto;
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-top: 80px;
-      margin-bottom: 40px;
+    body.theme-dark {
+      background: #222;
+      color: #fff;
+    }
+    body.theme-light {
+      background: #fff;
+      color: #222;
+    }
+    body.theme-light .header-slide {
+      background: #f8f8f8;
+      color: #222;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
     }
     .info { font-size: 1em; margin-bottom: 8px; color: #ffd700; text-align: center; }
     body.theme-light .info { color: #222; }
@@ -102,52 +102,38 @@
       bottom: 0;
       right: 0;
       left: 0;
-      height: 32px;
+      height: 40px;
       background: #444;
       color: #ffd700;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       font-size: 0.95em;
       z-index: 100;
       box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
       letter-spacing: 1px;
-      padding: 0 8px;
+      padding: 0 16px;
+      gap: 10px;
+    }
+    .footer-info {
+      margin-right: auto;
+      font-size: 1em;
+      color: #ffd700;
+      text-align: center;
+      min-width: 180px;
+      flex-shrink: 0;
+    }
+    body.theme-light .footer-info {
+      color: #222;
     }
     body.theme-light .footer { background: #eaeaea; color: #222; box-shadow: 0 -2px 8px rgba(0,0,0,0.07); }
-    .footer-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-left: 10px;
-    }
-    .footer-controls label {
-      color: #ffd700;
-      font-size: 0.95em;
-      margin-right: 6px;
-    }
-    body.theme-light .footer-controls label { color: #222; }
-    .footer-controls input[type="range"] { accent-color: #ffd700; height: 2px; width: 75px; }
-    body.theme-light .footer-controls input[type="range"] { accent-color: #222; }
-    .footer-controls select {
-      background: #222;
-      color: #ffd700;
-      border: 1px solid #ffd700;
-      border-radius: 4px;
-      font-size: 0.95em;
-      padding: 2px 5px;
-      margin-left: 6px;
-      height: 24px;
-    }
-    body.theme-light .footer-controls select { background: #fff; color: #222; border: 1px solid #222; }
     .theme-switch-btn {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       border: 1.5px solid #ffd700;
-      margin-right: 8px;
       margin-left: 0;
+      margin-right: 4px;
       outline: none;
       cursor: pointer;
       transition: border 0.2s, box-shadow 0.2s, background 0.2s;
@@ -162,23 +148,141 @@
       border: 1.5px solid #222;
       box-shadow: 0 0 3px #22233;
     }
+    .settings-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid #ffd700;
+      background: #333;
+      color: #ffd700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      cursor: pointer;
+      margin-left: 4px;
+      box-shadow: 0 0 3px #ffd70033;
+      transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    body.theme-light .settings-btn {
+      background: #fff;
+      color: #222;
+      border: 1.5px solid #222;
+      box-shadow: 0 0 3px #22233;
+    }
+    /* Slide switch styles */
+    .slide-switch-btn {
+      padding: 0 12px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid #ffd700;
+      background: #333;
+      color: #ffd700;
+      font-size: 1em;
+      margin-left: 4px;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
+    }
+    body.theme-light .slide-switch-btn {
+      background: #fff;
+      color: #222;
+      border: 1px solid #222;
+    }
+    /* Popup styles */
+    .popup-settings {
+      position: fixed;
+      bottom: 50px;
+      right: 24px;
+      background: #222;
+      color: #ffd700;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.27);
+      padding: 24px 32px 20px 32px;
+      z-index: 200;
+      min-width: 260px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 1.15em;
+      border: 1px solid #ffd700;
+    }
+    body.theme-light .popup-settings {
+      background: #fff;
+      color: #222;
+      border: 1px solid #222;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+    .popup-settings label {
+      color: #ffd700;
+      font-size: 1em;
+      margin-right: 6px;
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+    body.theme-light .popup-settings label { color: #222; }
+    .popup-settings input[type="range"] { accent-color: #ffd700; height: 2px; width: 120px; vertical-align: middle; }
+    body.theme-light .popup-settings input[type="range"] { accent-color: #222; }
+    .popup-settings select {
+      background: #222;
+      color: #ffd700;
+      border: 1px solid #ffd700;
+      border-radius: 4px;
+      font-size: 1em;
+      padding: 2px 6px;
+      margin-left: 6px;
+      height: 28px;
+      vertical-align: middle;
+    }
+    body.theme-light .popup-settings select { background: #fff; color: #222; border: 1px solid #222; }
+    .popup-settings .close-settings {
+      background: transparent;
+      color: #ffd700;
+      border: none;
+      font-size: 1.3em;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      left: 16px;
+    }
+    body.theme-light .popup-settings .close-settings { color: #222; }
+    .popup-settings-row {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: transparent;
+      z-index: 199;
+      display: none;
+    }
   </style>
 </head>
 <body class="theme-dark">
-  <div class="home">
-    ހެނދުނާއި ހަވީރުގެ ޛިކުރު
-  </div>
   <div class="main-content">
-    <div class="info" id="info"></div>
+    <div class="header-slide" id="header-slide">ދުޢާ</div>
+    <!-- Removed info from here -->
     <div class="slide" id="slide"></div>
     <section class="meaning-section" id="meaning-section"></section>
   </div>
   <div class="footer">
-    <span class="footer-controls">
+    <span class="footer-info" id="footer-info"></span>
+    <button class="slide-switch-btn" id="slide-switch-btn">ހަވީރުގެ ޛިކުރު</button>
+    <button class="theme-switch-btn" id="theme-switch-btn" title="Toggle theme"></button>
+    <button class="settings-btn" id="settings-btn" title="Settings">&#9881;</button>
+  </div>
+  <div class="popup-overlay" id="popup-overlay"></div>
+  <div class="popup-settings" id="popup-settings">
+    <button class="close-settings" id="close-settings" title="Close">&times;</button>
+    <div class="popup-settings-row">
       <label for="font-size">ފޮންޓް ސައިޒް:</label>
       <input type="range" id="font-size" min="24" max="64" value="32">
       <span id="font-size-value">32px</span>
-      <button class="theme-switch-btn" id="theme-switch-btn" title="Toggle theme"></button>
+    </div>
+    <div class="popup-settings-row">
       <label for="arabic-font">ފޮންޓް:</label>
       <select id="arabic-font">
         <option value="'Amiri', serif" selected>الأميري</option>
@@ -187,9 +291,10 @@
         <option value="'Lateef', serif">لطيف </option>
         <option value="'Reem Kufi', sans-serif">كوفي ريم</option>
       </select>
-    </span>
+    </div>
   </div>
   <script>
+
     // Morning slides (add "meaning" property)
 
     const morningSlides = [
@@ -323,15 +428,24 @@
       },
     ];
 
-    let slides = eveningSlides;
+    // Initial slide set logic
     function isMorning() {
       const now = new Date();
       let hour = now.getHours();
       return hour >= 5 && hour <= 12;
     }
-    if (isMorning()) {
-      slides = morningSlides;
+
+    let slideMode = isMorning() ? 'morning' : 'evening';
+    let slides = slideMode === 'morning' ? morningSlides : eveningSlides;
+
+    function getHeaderText() {
+      if (slideMode === 'morning') {
+        return "ހެނދުނުގެ ޛިކުރުތަށް";
+      } else {
+        return "ހަވީރުގެ ޛިކުރުތަށް";
+      }
     }
+
     let currentSlide = 0;
     let clickCount = 0;
     let fontSize = 32;
@@ -342,6 +456,21 @@
     const themeSwitchBtn = document.getElementById('theme-switch-btn');
     const slideDiv = document.getElementById('slide');
     const meaningSection = document.getElementById('meaning-section');
+    const headerSlide = document.getElementById('header-slide');
+    const settingsBtn = document.getElementById('settings-btn');
+    const popupSettings = document.getElementById('popup-settings');
+    const closeSettingsBtn = document.getElementById('close-settings');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const slideSwitchBtn = document.getElementById('slide-switch-btn');
+    const footerInfo = document.getElementById('footer-info'); // NEW
+
+    function updateSlideSwitchLabel() {
+      if (slideMode === 'morning') {
+        slideSwitchBtn.textContent = "ހަވީރުގެ ޛިކުރުތަށް";
+      } else {
+        slideSwitchBtn.textContent = "ހެނދުނުގެ ޛިކުރުތަށް";
+      }
+    }
 
     fontSizeInput.addEventListener('input', function() {
       fontSize = parseInt(this.value);
@@ -364,19 +493,35 @@
       }
     });
 
+    slideSwitchBtn.addEventListener('click', function() {
+      slideMode = slideMode === 'morning' ? 'evening' : 'morning';
+      slides = slideMode === 'morning' ? morningSlides : eveningSlides;
+      currentSlide = 0;
+      clickCount = 0;
+      updateSlideSwitchLabel();
+      showSlide();
+    });
+
     function showSlide() {
+      headerSlide.textContent = getHeaderText();
+      headerSlide.style.fontSize = fontSize + "px";
+      headerSlide.style.fontFamily = "'MVTyper', serif";
+
       slideDiv.textContent = slides[currentSlide].text;
       slideDiv.style.fontSize = fontSize + "px";
       slideDiv.style.fontFamily = selectedFont;
+
       meaningSection.innerHTML = `<strong>މާނަ:</strong> ${slides[currentSlide].meaning || ""}`;
-      meaningSection.style.fontSize = fontSize + "px"; // <--- ADDED THIS LINE
-      document.getElementById('info').textContent =
+      meaningSection.style.fontSize = fontSize + "px";
+
+      // Move info to footer
+      footerInfo.textContent =
         `ކިޔަން ޖެހެނީ: ${slides[currentSlide].clicks} | ކިޔުނީ: ${clickCount}`;
     }
 
     slideDiv.onclick = () => {
       clickCount++;
-      document.getElementById('info').textContent =
+      footerInfo.textContent =
         `ކިޔަން ޖެހެނީ: ${slides[currentSlide].clicks} | ކިޔުނީ: ${clickCount}`;
       if (clickCount >= slides[currentSlide].clicks) {
         if (currentSlide < slides.length - 1) {
@@ -386,11 +531,26 @@
         } else {
           slideDiv.textContent = "ނިމުނީ 🎉";
           meaningSection.innerHTML = "";
-          document.getElementById('info').textContent = "";
+          footerInfo.textContent = "";
         }
       }
     };
 
+    // Popup logic
+    settingsBtn.onclick = () => {
+      popupSettings.style.display = 'flex';
+      popupOverlay.style.display = 'block';
+    }
+    closeSettingsBtn.onclick = () => {
+      popupSettings.style.display = 'none';
+      popupOverlay.style.display = 'none';
+    }
+    popupOverlay.onclick = () => {
+      popupSettings.style.display = 'none';
+      popupOverlay.style.display = 'none';
+    }
+
+    updateSlideSwitchLabel();
     showSlide();
   </script>
 </body>
