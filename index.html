@@ -23,23 +23,30 @@
       justify-content: flex-start;
       align-items: center;
     }
+    .main-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .header-slide {
       background: #333;
       font-family: 'MVTyper', 'Amiri', serif;
       border-radius: 16px;
-      padding: 32px;
+      padding: 22px;
       max-width: 800px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       text-align: center;
-      font-size: 2em;
+      font-size: 17px; /* Initial font size */
       line-height: 1.6;
-      margin-bottom: 12px;
-      margin-top: 24px;
+      margin-bottom: 10px;
+      margin-top: 10px;
       direction: rtl;
       user-select: none;
       color: #fff;
       font-weight: bold;
       letter-spacing: 2px;
+      transition: font-size 0.2s;
     }
     body.theme-dark {
       background: #222;
@@ -54,22 +61,20 @@
       color: #222;
       box-shadow: 0 8px 32px rgba(0,0,0,0.08);
     }
-    .info { font-size: 1em; margin-bottom: 8px; color: #ffd700; text-align: center; }
-    body.theme-light .info { color: #222; }
     .slide {
       background: #333;
       border-radius: 16px;
-      padding: 32px;
+      padding: 22px;
       max-width: 800px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       text-align: right;
-      font-size: 2em;
+      font-size: 14px; /* Initial font size */
       line-height: 1.6;
-      margin-bottom: 12px;
+      margin-bottom: -5px;
       direction: rtl;
       user-select: none;
       cursor: pointer;
-      transition: box-shadow 0.2s;
+      transition: box-shadow 0.2s, font-size 0.2s;
       font-family: 'Amiri', serif;
       color: #fff;
     }
@@ -78,17 +83,17 @@
     .meaning-section {
       background: #333;
       border-radius: 16px;
-      padding: 32px;
+      padding: 22px;
       max-width: 800px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       text-align: right;
-      font-size: 2em;
+      font-size: 12px; /* Initial font size */
       line-height: 1.6;
       margin-bottom: 12px;
       direction: rtl;
       user-select: none;
       cursor: pointer;
-      transition: box-shadow 0.2s;
+      transition: box-shadow 0.2s, font-size 0.2s;
       font-family: 'MVTyper', 'Amiri', 'Scheherazade New', 'Cairo', 'Lateef', 'Reem Kufi', serif;
       color: #fff;
     }
@@ -102,17 +107,17 @@
       bottom: 0;
       right: 0;
       left: 0;
-      height: 40px;
+      height: 44px;
       background: #444;
       color: #ffd700;
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      font-size: 0.95em;
+      font-size: 1em;
       z-index: 100;
       box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
       letter-spacing: 1px;
-      padding: 0 16px;
+      padding: 0 12px;
       gap: 10px;
     }
     .footer-info {
@@ -122,9 +127,34 @@
       text-align: center;
       min-width: 180px;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
     body.theme-light .footer-info {
       color: #222;
+    }
+    .footer-arrows {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .footer-arrow-btn {
+      background: none;
+      border: none;
+      color: #ffd700;
+      font-size: 1.4em;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .footer-arrow-btn:active {
+      background: #333;
+    }
+    body.theme-light .footer-arrow-btn {
+      color: #222;
+      background: #fff;
     }
     body.theme-light .footer { background: #eaeaea; color: #222; box-shadow: 0 -2px 8px rgba(0,0,0,0.07); }
     .theme-switch-btn {
@@ -170,7 +200,6 @@
       border: 1.5px solid #222;
       box-shadow: 0 0 3px #22233;
     }
-    /* Slide switch styles */
     .slide-switch-btn {
       padding: 0 12px;
       height: 28px;
@@ -188,7 +217,6 @@
       color: #222;
       border: 1px solid #222;
     }
-    /* Popup styles */
     .popup-settings {
       position: fixed;
       bottom: 50px;
@@ -262,14 +290,19 @@
   </style>
 </head>
 <body class="theme-dark">
-  <div class="main-content">
+  <div class="main-content" id="main-content">
     <div class="header-slide" id="header-slide">ދުޢާ</div>
-    <!-- Removed info from here -->
     <div class="slide" id="slide"></div>
     <section class="meaning-section" id="meaning-section"></section>
   </div>
   <div class="footer">
-    <span class="footer-info" id="footer-info"></span>
+    <span class="footer-info" id="footer-info">
+      <!-- Dynamic info goes here -->
+    </span>
+    <div class="footer-arrows">
+      <button class="footer-arrow-btn" id="prev-dhikr" title="Previous">&#8592;</button>
+      <button class="footer-arrow-btn" id="next-dhikr" title="Next">&#8594;</button>
+    </div>
     <button class="slide-switch-btn" id="slide-switch-btn">ހަވީރުގެ ޛިކުރު</button>
     <button class="theme-switch-btn" id="theme-switch-btn" title="Toggle theme"></button>
     <button class="settings-btn" id="settings-btn" title="Settings">&#9881;</button>
@@ -279,8 +312,8 @@
     <button class="close-settings" id="close-settings" title="Close">&times;</button>
     <div class="popup-settings-row">
       <label for="font-size">ފޮންޓް ސައިޒް:</label>
-      <input type="range" id="font-size" min="24" max="64" value="32">
-      <span id="font-size-value">32px</span>
+      <input type="range" id="font-size" min="10" max="32" value="14">
+      <span id="font-size-value">14px</span>
     </div>
     <div class="popup-settings-row">
       <label for="arabic-font">ފޮންޓް:</label>
@@ -428,6 +461,7 @@
       },
     ];
 
+
     // Initial slide set logic
     function isMorning() {
       const now = new Date();
@@ -448,7 +482,7 @@
 
     let currentSlide = 0;
     let clickCount = 0;
-    let fontSize = 32;
+    let fontSize = 14; // Default font size
     let selectedFont = "'Amiri', serif";
     const fontSizeInput = document.getElementById('font-size');
     const fontSizeValue = document.getElementById('font-size-value');
@@ -462,7 +496,10 @@
     const closeSettingsBtn = document.getElementById('close-settings');
     const popupOverlay = document.getElementById('popup-overlay');
     const slideSwitchBtn = document.getElementById('slide-switch-btn');
-    const footerInfo = document.getElementById('footer-info'); // NEW
+    const footerInfo = document.getElementById('footer-info');
+    const prevDhikrBtn = document.getElementById('prev-dhikr');
+    const nextDhikrBtn = document.getElementById('next-dhikr');
+    const mainContent = document.getElementById('main-content');
 
     function updateSlideSwitchLabel() {
       if (slideMode === 'morning') {
@@ -502,27 +539,39 @@
       showSlide();
     });
 
-    function showSlide() {
-      headerSlide.textContent = getHeaderText();
-      headerSlide.style.fontSize = fontSize + "px";
-      headerSlide.style.fontFamily = "'MVTyper', serif";
+    // Go Back and Next Dhikr buttons
+    prevDhikrBtn.onclick = function(e) {
+      e.stopPropagation();
+      if (currentSlide > 0) {
+        currentSlide--;
+        clickCount = 0;
+        showSlide();
+      }
+    };
+    nextDhikrBtn.onclick = function(e) {
+      e.stopPropagation();
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        clickCount = 0;
+        showSlide();
+      }
+    };
 
-      slideDiv.textContent = slides[currentSlide].text;
-      slideDiv.style.fontSize = fontSize + "px";
-      slideDiv.style.fontFamily = selectedFont;
+    // Count and change on click anywhere except header/footer
+    document.body.addEventListener('click', function(e) {
+      let isHeader = headerSlide.contains(e.target);
+      let isFooter = e.target.closest('.footer');
+      if (!isHeader && !isFooter && (slideDiv.contains(e.target) || meaningSection.contains(e.target) || mainContent.contains(e.target))) {
+        handleSlideClick();
+      }
+    });
 
-      meaningSection.innerHTML = `<strong>މާނަ:</strong> ${slides[currentSlide].meaning || ""}`;
-      meaningSection.style.fontSize = fontSize + "px";
+    // Remove click from slideDiv itself (handled globally)
+    slideDiv.onclick = null;
 
-      // Move info to footer
-      footerInfo.textContent =
-        `ކިޔަން ޖެހެނީ: ${slides[currentSlide].clicks} | ކިޔުނީ: ${clickCount}`;
-    }
-
-    slideDiv.onclick = () => {
+    function handleSlideClick() {
       clickCount++;
-      footerInfo.textContent =
-        `ކިޔަން ޖެހެނީ: ${slides[currentSlide].clicks} | ކިޔުނީ: ${clickCount}`;
+      showFooterInfo();
       if (clickCount >= slides[currentSlide].clicks) {
         if (currentSlide < slides.length - 1) {
           currentSlide++;
@@ -531,10 +580,34 @@
         } else {
           slideDiv.textContent = "ނިމުނީ 🎉";
           meaningSection.innerHTML = "";
-          footerInfo.textContent = "";
+          showFooterInfo();
         }
       }
-    };
+    }
+
+    function showFooterInfo() {
+      const remaining = slides.length - currentSlide - 1;
+      const total = slides.length;
+      const clickText =  `ތަކުރާރު ކުރަންޖެހެނީ: ${slides[currentSlide]?.clicks || 0} އިން ${clickCount}`;
+      const dhikrCountText = `${remaining}/${total}`; 
+      footerInfo.innerHTML =  `(&nbsp;${clickText}) ~ ${dhikrCountText}&nbsp;`;
+    }
+
+    function showSlide() {
+      // Font sizes adjusted by fontSize setting
+      headerSlide.textContent = getHeaderText();
+      headerSlide.style.fontSize = Math.round(fontSize * 1.2) + "px"; // Header: ~17px at default
+      headerSlide.style.fontFamily = "'MVTyper', serif";
+
+      slideDiv.textContent = slides[currentSlide].text;
+      slideDiv.style.fontSize = fontSize + "px"; // Slide: adjustable
+      slideDiv.style.fontFamily = selectedFont;
+
+      meaningSection.innerHTML = `<strong>މާނަ:</strong> ${slides[currentSlide].meaning || ""}`;
+      meaningSection.style.fontSize = Math.round(fontSize * 0.85) + "px"; // Meaning: adjustable, 12px at default
+
+      showFooterInfo();
+    }
 
     // Popup logic
     settingsBtn.onclick = () => {
