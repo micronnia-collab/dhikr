@@ -37,7 +37,7 @@
       max-width: 800px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       text-align: center;
-      font-size: 17px; /* Initial font size */
+      font-size: 20px; /* Initial font size */
       line-height: 1.6;
       margin-bottom: 10px;
       margin-top: 10px;
@@ -68,7 +68,7 @@
       max-width: 800px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       text-align: right;
-      font-size: 14px; /* Initial font size */
+      font-size: 16px; /* Initial font size */
       line-height: 1.6;
       margin-bottom: -5px;
       direction: rtl;
@@ -87,7 +87,7 @@
       max-width: 800px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       text-align: right;
-      font-size: 12px; /* Initial font size */
+      font-size: 14px; /* Initial font size */
       line-height: 1.6;
       margin-bottom: 12px;
       direction: rtl;
@@ -202,6 +202,7 @@
     }
     .slide-switch-btn {
       padding: 0 12px;
+      font-family: 'MVTyper', 'Amiri', serif;
       height: 28px;
       border-radius: 6px;
       border: 1px solid #ffd700;
@@ -482,7 +483,7 @@
 
     let currentSlide = 0;
     let clickCount = 0;
-    let fontSize = 14; // Default font size
+    let fontSize = 16; // Default font size
     let selectedFont = "'Amiri', serif";
     const fontSizeInput = document.getElementById('font-size');
     const fontSizeValue = document.getElementById('font-size-value');
@@ -586,9 +587,9 @@
     }
 
     function showFooterInfo() {
-      const remaining = slides.length - currentSlide - 1;
+      const remaining = slides.length - currentSlide - 0;
       const total = slides.length;
-      const clickText =  `ތަކުރާރު ކުރަންޖެހެނީ: ${slides[currentSlide]?.clicks || 0} އިން ${clickCount}`;
+      const clickText =  `${slides[currentSlide]?.clicks || 0} އިން  ${clickCount}`;
       const dhikrCountText = `${remaining}/${total}`; 
       footerInfo.innerHTML =  `(&nbsp;${clickText}) ~ ${dhikrCountText}&nbsp;`;
     }
@@ -596,7 +597,7 @@
     function showSlide() {
       // Font sizes adjusted by fontSize setting
       headerSlide.textContent = getHeaderText();
-      headerSlide.style.fontSize = Math.round(fontSize * 1.2) + "px"; // Header: ~17px at default
+      headerSlide.style.fontSize = Math.round(fontSize * 1.4) + "px"; // Header: ~17px at default
       headerSlide.style.fontFamily = "'MVTyper', serif";
 
       slideDiv.textContent = slides[currentSlide].text;
