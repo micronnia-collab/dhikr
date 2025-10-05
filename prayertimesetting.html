@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prayer Times Database Schema</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 16px #0002; padding: 2em; }
+        h1 { text-align: center; margin-bottom: 1em; }
+        pre { background: #f0f0f0; border-radius: 6px; padding: 1em; }
+        .desc { margin-bottom: 1em; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1.5em;}
+        th, td { border: 1px solid #bbb; padding: 0.5em 1em; text-align: left; }
+        th { background: #e3e3e3; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Prayer Times Table Schema</h1>
+    <div class="desc">
+        The following SQL statement creates a table for storing prayer times for different islands and dates:
+    </div>
+    <pre><code>CREATE TABLE prayer_times (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    island VARCHAR(50),
+    date DATE,
+    imsaak TIME,
+    fajr TIME,
+    sunrise TIME,
+    dhuhr TIME,
+    asr TIME,
+    maghrib TIME,
+    isha TIME
+);</code></pre>
+
+    <h2>Field Descriptions</h2>
+    <table>
+        <tr><th>Column</th><th>Type</th><th>Description</th></tr>
+        <tr><td>id</td><td>INTEGER PRIMARY KEY AUTOINCREMENT</td><td>Unique identifier for each record</td></tr>
+        <tr><td>island</td><td>VARCHAR(50)</td><td>Name of the island</td></tr>
+        <tr><td>date</td><td>DATE</td><td>Date for the prayer times</td></tr>
+        <tr><td>imsaak</td><td>TIME</td><td>Imsaak time (pre-dawn)</td></tr>
+        <tr><td>fajr</td><td>TIME</td><td>Fajr (dawn) prayer time</td></tr>
+        <tr><td>sunrise</td><td>TIME</td><td>Sunrise time</td></tr>
+        <tr><td>dhuhr</td><td>TIME</td><td>Dhuhr (noon) prayer time</td></tr>
+        <tr><td>asr</td><td>TIME</td><td>Asr (afternoon) prayer time</td></tr>
+        <tr><td>maghrib</td><td>TIME</td><td>Maghrib (sunset) prayer time</td></tr>
+        <tr><td>isha</td><td>TIME</td><td>Isha (night) prayer time</td></tr>
+    </table>
+</div>
+</body>
+</html>
