@@ -15,22 +15,33 @@
             margin: 0;
             padding-top: 20px; /* Add some space from the top */
             font-family: sans-serif;
+            background-color: #f4f4f5; /* Light background for contrast */
         }
+        
+        /* New CSS for the iframe border */
+        iframe {
+            border: 2px solid #3b82f6; /* Blue border */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: box-shadow 0.3s ease;
+        }
+
         footer {
             margin-top: 10px;
             font-size: 14px;
-            color: #333;
+            color: #4b5563;
         }
     </style>
 </head>
 <body>
     <!-- The embedded iframe content -->
-<script language="javascript" type="text/javascript">
-document.write('<iframe src="http://api.dhivehi.mv/prayer-times/" frameborder="0" width="200px" height="300px" align="center"></iframe>');
-</script>
+    <iframe 
+        src="http://api.dhivehi.mv/prayer-times/" 
+        frameborder="0" 
+        width="200px" 
+        height="300px" 
+        title="Dhivehi Prayer Times Widget">
+    </iframe>
     
-    <footer>
-        Prayer time
-    </footer>
 </body>
 </html>
