@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Times Embed</title>
+    <style>
+        body {
+            /* Basic center alignment for a Telegram Mini App view */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align from top */
+            min-height: 100vh; /* Use full height */
+            margin: 0;
+            padding-top: 20px; /* Add some space from the top */
+            font-family: sans-serif;
+        }
+        footer {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- The embedded iframe content -->
+    <iframe 
+        src="http://api.dhivehi.mv/prayer-times/" 
+        frameborder="0" 
+        width="200px" 
+        height="300px" 
+        title="Dhivehi Prayer Times Widget">
+    </iframe>
+    
+    <footer>
+        Prayer time
+    </footer>
+</body>
+</html>
