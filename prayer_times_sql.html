@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prayer Times from SQL</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.7.0/sql-wasm.js"></script>
+</head>
+<body>
+  <h2>Prayer Times</h2>
+  <select id="island-select"></select>
+  <div id="prayer-times"></div>
+  <input type="file" id="sqlfile" accept=".sqlite,.db,.sql" />
+  <script>
+    let db, prayerRows;
+
+    // Helper to display times
+    function showPrayerTimesForIsland(island) {
+      const today = new Date();
+      const todayStr =
+        today.getFullYear() +
+        '-' +
+        String(today.getMonth() + 1).padStart(2, '0') +
+        '-' +
+        String(today.getDate()).padStart(2, '0');
+      const row = prayerRows.find(r => r.island === island && r.date === todayStr);
+      let html;
+      if (row) {
+        html = `<strong>${row.island} (${row.date})</strong><ul>`;
+        html += `<li>Imsaak: ${row.imsaak}</li><li>Fajr: ${row.fajr}</li><li>Sunrise: ${row.sunrise}</li><li>Dhuhr: ${row.dhuhr}</li><li>Asr: ${row.asr}</li><li>Maghrib: ${row.maghrib}</li><li>Isha: ${row.isha}</li></ul>`;
+      } else {
+        html = "No data for today.";
+      }
+      document.getElementById('prayer-times').innerHTML = html;
+    }
+
+    document.getElementById('sqlfile').addEventListener('change', async function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const arrayBuffer = await file.arrayBuffer();
+      initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.7.0/${file}` }).then(SQL => {
+        db = new SQL.Database(new Uint8Array(arrayBuffer));
+        const res = db.exec("SELECT * FROM prayer_times");
+        if (res.length) {
+          const cols = res[0].columns;
+          prayerRows = res[0].values.map(row => Object.fromEntries(row.map((v, i) => [cols[i], v])));
+          // Populate islands
+          const islands = [...new Set(prayerRows.map(r => r.island))];
+          const select = document.getElementById('island-select');
+          select.innerHTML = '';
+          islands.forEach(island => {
+            const opt = document.createElement('option');
+            opt.value = island;
+            opt.textContent = island;
+            select.appendChild(opt);
+          });
+          select.onchange = () => showPrayerTimesForIsland(select.value);
+          showPrayerTimesForIsland(islands[0]);
+        }
+      });
+    });
+  </script>
+  <p>
+    <b>How to use:</b> Export your <code>prayer_times.sql</code> as an SQLite DB (e.g., <code>prayer_times.sqlite</code>) and upload it here.<br>
+    Browsers cannot run raw .sql files; use an SQLite file instead.
+  </p>
+</body>
+</html>
